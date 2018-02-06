@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  initial_balance: 1
+  investment: false
+
+two:
+  name: MyString
+  initial_balance: 1
+  investment: false

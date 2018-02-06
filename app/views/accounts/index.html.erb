@@ -1,0 +1,50 @@
+<h3>Accounts</h3>
+
+<div class="row">
+
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-body">
+
+        <%= bootstrap_form_for(@account) do |f| %>
+          <%= f.text_field :name %>
+          <%= f.number_field :initial_balance %>
+          <%= f.check_box :investment %>
+          <%= f.submit %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-body">
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Initial balance</th>
+            <th>Investment</th>
+            <th colspan="2"></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @accounts.each do |account| %>
+            <tr>
+              <td><%= account.name %></td>
+              <td><%= account.initial_balance %></td>
+              <td><%= account.investment %></td>
+              <td><%= link_to 'Edit', edit_account_path(account) %></td>
+              <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
