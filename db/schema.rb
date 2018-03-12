@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206173617) do
+ActiveRecord::Schema.define(version: 20180214172536) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,19 @@ ActiveRecord::Schema.define(version: 20180206173617) do
     t.boolean "investment", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.date "date"
+    t.integer "account_id"
+    t.text "category"
+    t.integer "amount"
+    t.text "comments"
+    t.integer "transaction_type"
+    t.integer "transfer_to_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_transactions_on_account_id"
   end
 
 end

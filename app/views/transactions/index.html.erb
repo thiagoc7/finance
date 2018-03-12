@@ -1,0 +1,79 @@
+<h3>Transactions</h3>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= bootstrap_form_tag url: '/transactions', method: 'get', layout: :inline do |f| %>
+      <%= f.select :account_id, Account.all.pluck('name', 'id'), selected: @account_id_param, hide_label: true %>
+      <%= f.month_field :month, hide_label: true, class: 'ml-3', value: @month_param, required: true %>
+      <%= f.submit 'Go!', class: 'ml-3 btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <nav class="nav nav-pills justify-content-end">
+      <%=	nav_link 'bank', @account_type %>
+      <%=	nav_link 'investment', @account_type %>
+    </nav>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+          <%=	 nav_item 'expense', @transaction.transaction_type %>
+          <%=	 nav_item 'revenue', @transaction.transaction_type %>
+          <%=	 nav_item 'transfer', @transaction.transaction_type %>
+        </ul>
+      </div>
+
+      <div class="card-body">
+        <%= render 'form', transaction: @transaction %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <div class="card">
+      <div class="card-body">
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Date</th>
+            <th></th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Balance</th>
+            <th></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @transactions.each do |transaction| %>
+            <tr>
+              <td><%= l transaction.date, format: :short %></td>
+              <td><%= octicon transaction.icon %></td>
+              <td><%= transaction.category %></td>
+              <td><%= number_with_delimiter transaction.amount %></td>
+              <td></td>
+              <td>
+                <%= link_to  edit_transaction_path(transaction) do %>
+                  <%= octicon :pencil %>
+                <%	end %>
+                <%= link_to transaction, method: :delete, class: 'ml-2', data: { confirm: 'Are you sure?' } do %>
+                  <%=	 octicon :trashcan %>
+                <%	 end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

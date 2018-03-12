@@ -1,12 +1,78 @@
-<h3>Accounts</h3>
+<h3>Transactions</h3>
+
+<div class="row">
+  <div class="col-md-12">
+
+    <form class="form-inline">
+      <label class="sr-only" for="inlineFormInputName2">Name</label>
+      <select class="form-control mb-2 mr-sm-2" id="inlineFormInputName2">
+        <option>Bradesco</option>
+        <option>Itau</option>
+        <option>Santander</option>
+        <option>HSBC</option>
+        <option>Caixa</option>
+      </select>
+
+      <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+      <input type="month" class="form-control mb-2 mr-sm-2" id="inlineFormInputGroupUsername2" placeholder="Username">
+
+      <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    </form>
+
+  </div>
+</div>
+
+</br>
 
 <div class="row">
 
   <div class="col-md-5">
     <div class="card">
+
+      <div class="card-header">
+        <ul class="nav nav-pills card-header-pills">
+          <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+          </li>
+        </ul>
+      </div>
+
       <div class="card-body">
 
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Day of the month</label>
+                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Category</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Amount</label>
+                <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputText">Obs</label>
+                <textarea class="form-control" id="exampleInputText" placeholder="Password"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+          </div>
+
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+          <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+        </div>
 
       </div>
     </div>

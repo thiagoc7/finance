@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'octicons_helper'
 gem "bootstrap_form",
     git: "https://github.com/bootstrap-ruby/rails-bootstrap-forms.git",
     branch: "master"
