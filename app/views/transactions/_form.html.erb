@@ -1,10 +1,10 @@
 <%= bootstrap_form_for(transaction) do |f| %>
-  <%= f.hidden_field :transaction_type %>
+  <%= f.hidden_field :kind %>
   <%= f.hidden_field :account_id %>
   <%= f.date_field :date %>
 
-  <% if transaction.transaction_type == 'transfer' %>
-    <%= f.select :transfer_to_account_id, Account.all.pluck('name', 'id') %>
+  <% if %w(transfer buy sell).include? transaction.kind %>
+    <%= f.select :related_account_id, Account.where(kind: :bank).pluck('name', 'id') %>
   <% else %>
     <%= f.text_field :category, list: 'categories' %>
   <% end %>
@@ -12,6 +12,7 @@
   <%= f.number_field :amount %>
   <%= f.text_area :comments %>
   <%= f.submit %>
+  <%=	link_to 'Cancel', transactions_path, class: 'btn btn-light' %>
 <% end %>
 
 <datalist id="categories">

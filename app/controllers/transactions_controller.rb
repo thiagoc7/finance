@@ -4,7 +4,6 @@ class TransactionsController < ApplicationController
   def index
   end
 
-
   def edit
     render :index
   end
@@ -35,31 +34,36 @@ class TransactionsController < ApplicationController
   private
 
   def persist_query_params
-    @account_id_param = params[:account_id] || session[:account_id] || Account.first.id
-    session[:account_id] = @account_id_param
+    @account_id = params[:account_id] || session[:account_id] || Account.first.id
+    @month = params[:month] || session[:month] || Date.today.last_month
+    @date = Date.new(@month.first(4).to_i, @month.last(2).to_i, 15)
+    @kind = find_transaction_kind
 
-    @month_param = params[:month] || session[:month] || Date.today.last_month
-    session[:month] = @month_param
+    session[:account_id] = @account_id
+    session[:month] = @month
+    session[:kind] = @kind
+  end
 
-    @transaction_type = params[:transaction_type] || session[:transaction_type] || 'expense'
-    session[:transaction_type] = @transaction_type
-
-    @account_type = params[:account_type] || session[:account_type] || 'bank'
-    session[:account_type] = @account_type
+  def find_transaction_kind
+    if @account_id == session[:account_id]
+      params[:kind] || session[:kind] || 'expense'
+    else
+      'expense'
+    end
   end
 
   def set_transaction
     @transaction = params[:id] ?
                        Transaction.find(params[:id]) :
                        Transaction.new(
-                           date: Date.new(@month_param.first(4).to_i, @month_param.last(2).to_i, 15),
-                           account_id: @account_id_param,
-                           transaction_type: @transaction_type
+                           date: @date,
+                           account_id: @account_id,
+                           kind: @kind
                        )
-    @transactions = Transaction.where(account_id: @account_id_param)
+    @transactions = @transaction.account.all_transactions.in_the_month_of(@date)
   end
 
   def transaction_params
-    params.require(:transaction).permit(:date, :category, :amount, :comments, :transaction_type, :account_id, :transfer_to_account_id)
+    params.require(:transaction).permit(:date, :category, :amount, :comments, :kind, :account_id, :related_account_id)
   end
 end

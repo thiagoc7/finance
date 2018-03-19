@@ -9,7 +9,7 @@
         <%= bootstrap_form_for(@account) do |f| %>
           <%= f.text_field :name %>
           <%= f.number_field :initial_balance %>
-          <%= f.check_box :investment %>
+          <%= f.select :kind, Account.kinds.keys.to_a %>
           <%= f.submit %>
         <% end %>
 
@@ -36,7 +36,7 @@
             <tr>
               <td><%= account.name %></td>
               <td><%= account.initial_balance %></td>
-              <td><%= account.investment %></td>
+              <td><%= account.kind %></td>
               <td><%= link_to 'Edit', edit_account_path(account) %></td>
               <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
