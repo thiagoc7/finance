@@ -20,6 +20,10 @@ class Transaction < ApplicationRecord
     where(date: date.beginning_of_month..date.end_of_month)
   end
 
+  def self.from_to(from, to)
+    where(date: from..to)
+  end
+
   def self.total
     sum(:amount)
   end
@@ -32,9 +36,9 @@ class Transaction < ApplicationRecord
     where(kind: [:expense, :transfer, :sell])
   end
 
-  def spec
+  def spec(related = false)
     return category if expense? || revenue?
-    related_account.name
+    related ? account.name : related_account.name
   end
 
   def kinds_for_account

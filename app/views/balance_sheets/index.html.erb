@@ -1,0 +1,171 @@
+<h3>Balance Sheet</h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= bootstrap_form_tag method: 'get', layout: :inline do |f| %>
+      <%= f.month_field :begin_month, label: 'from', value: @begin_month, required: true %>
+      <%= f.month_field :end_month, label: 'to', value: @end_month, required: true %>
+      <%= f.submit 'Go!', class: 'ml-3 btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+
+          <thead>
+            <tr>
+              <th colspan="2"></th>
+              <th><%= l @bs.from, format: :long %></th>
+              <th><%= l @bs.to, format: :long %></th>
+              <th>Result</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          <% @bs.groups.each do |group| %>
+            <tr class="font-weight-bold">
+              <td><%=	group.name.capitalize.pluralize %></td>
+              <td></td>
+              <td><%=	number_with_delimiter group.begin_balance %></td>
+              <td><%=	number_with_delimiter group.end_balance %></td>
+              <td><%=	number_with_delimiter group.result %></td>
+            </tr>
+
+            <% group.accounts.each do |account| %>
+              <tr class="font-09">
+                <td><%= account.name %></td>
+                <td></td>
+                <td><%= number_with_delimiter account.begin_balance %></td>
+                <td><%= number_with_delimiter account.end_balance %></td>
+                <td><%= number_with_delimiter account.result %></td>
+              </tr>
+            <% end %>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <% end %>
+
+          <tr class="font-weight-bold">
+            <td>Banks</td>
+            <td></td>
+            <td>1,000</td>
+            <td>1,000</td>
+            <td>1,000</td>
+          </tr>
+
+          <tr class="font-09">
+            <td>Itau</td>
+            <td></td>
+            <td>1,000</td>
+            <td>1,000</td>
+            <td>1,000</td>
+          </tr>
+
+          <tr class="font-08 font-weight-light text-success">
+            <td></td>
+            <td><%= octicon 'arrow-up' %></td>
+            <td>Feb 15 - Salario</td>
+            <td>100</td>
+            <td></td>
+          </tr>
+
+          <tr class="font-08 font-weight-light text-danger">
+            <td></td>
+            <td><%= octicon 'arrow-down' %></td>
+            <td>Feb 20 - Aluguel</td>
+            <td>100</td>
+            <td></td>
+          </tr>
+
+          <tr class="font-08 font-weight-light text-danger">
+            <td></td>
+            <td><%= octicon 'arrow-down' %></td>
+            <td>Feb 20 - Carro</td>
+            <td>1250</td>
+            <td></td>
+          </tr>
+
+
+
+          <tr class="font-09">
+            <td>Bradesco</td>
+            <td></td>
+            <td>1,000</td>
+            <td>1,000</td>
+            <td>1,000</td>
+          </tr>
+
+          <tr class="font-08 font-weight-light text-success">
+            <td></td>
+            <td><%= octicon 'arrow-up' %></td>
+            <td>Feb 15 - Salario</td>
+            <td>100</td>
+            <td></td>
+          </tr>
+
+          <tr class="font-08 font-weight-light text-danger">
+            <td></td>
+            <td><%= octicon 'arrow-down' %></td>
+            <td>Feb 20 - Aluguel</td>
+            <td>100</td>
+            <td></td>
+          </tr>
+
+          <tr class="font-08 font-weight-light text-danger">
+            <td></td>
+            <td><%= octicon 'arrow-down' %></td>
+            <td>Feb 20 - Carro</td>
+            <td>1250</td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr class="font-weight-bold">
+            <td>Banks</td>
+            <td></td>
+            <td>1,000</td>
+            <td>1,000</td>
+            <td>1,000</td>
+          </tr>
+
+          <tr class="font-09">
+            <td></td>
+            <td>Itau</td>
+            <td>1,000</td>
+            <td>1,000</td>
+            <td>1,000</td>
+          </tr>
+
+          <tr class="font-09">
+            <td></td>
+            <td>Bradesco</td>
+            <td>500</td>
+            <td>500</td>
+            <td>700</td>
+          </tr>
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

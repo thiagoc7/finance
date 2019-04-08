@@ -8,6 +8,7 @@
 
         <%= bootstrap_form_for(@account) do |f| %>
           <%= f.text_field :name %>
+          <%= f.text_field :group %>
           <%= f.number_field :initial_balance %>
           <%= f.select :kind, Account.kinds.keys.to_a %>
           <%= f.submit %>
@@ -25,8 +26,9 @@
           <thead>
           <tr>
             <th>Name</th>
+            <th>Group</th>
             <th>Initial balance</th>
-            <th>Investment</th>
+            <th>Kind</th>
             <th colspan="2"></th>
           </tr>
           </thead>
@@ -35,6 +37,7 @@
           <% @accounts.each do |account| %>
             <tr>
               <td><%= account.name %></td>
+              <td><%= account.group %></td>
               <td><%= account.initial_balance %></td>
               <td><%= account.kind %></td>
               <td><%= link_to 'Edit', edit_account_path(account) %></td>

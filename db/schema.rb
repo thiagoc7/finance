@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20180214172536) do
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.integer "kind"
+    t.string "group", default: ""
     t.integer "initial_balance", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

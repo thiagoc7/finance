@@ -6,17 +6,17 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.1.4'
+gem 'rails'
 gem 'sqlite3'
-gem 'puma', '~> 3.7'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'puma'
+gem 'sass-rails'
+gem 'uglifier'
 
-gem 'coffee-rails', '~> 4.2'
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
+gem 'coffee-rails'
+gem 'turbolinks'
+gem 'jbuilder'
 
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 gem 'octicons_helper'
 gem "bootstrap_form",

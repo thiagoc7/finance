@@ -1,10 +1,11 @@
 class Account < ApplicationRecord
-  enum kind: [:bank, :investment]
+  enum kind: [:bank, :asset]
 
   has_many :transactions
   has_many :related_transactions, class_name:'Transaction', foreign_key: :related_account_id
 
   validates_presence_of :name, :kind
+  validates_uniqueness_of :name
 
   def all_transactions
     Transaction.where(account_id: id).or(Transaction.where(related_account_id: id))
@@ -14,13 +15,17 @@ class Account < ApplicationRecord
     kind + ' - ' + name
   end
 
-  def initial_balance_in(month)
+  def begin_balance(month)
     date = month.beginning_of_month - 1
     balance_until date
   end
 
-  def final_balance_in(month)
+  def end_balance(month)
     balance_until month.end_of_month
+  end
+
+  def result(from, to)
+    end_balance(to) - begin_balance(from)
   end
 
   def balance_until(date)

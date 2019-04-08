@@ -35,7 +35,7 @@ class TransactionsController < ApplicationController
 
   def persist_query_params
     @account_id = params[:account_id] || session[:account_id] || Account.first.id
-    @month = params[:month] || session[:month] || Date.today.last_month
+    @month = params[:month] || session[:month] || Date.today.last_month.to_s.first(7)
     @date = Date.new(@month.first(4).to_i, @month.last(2).to_i, 15)
     @kind = find_transaction_kind
 

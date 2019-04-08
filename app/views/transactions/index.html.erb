@@ -34,7 +34,7 @@
             <td></td>
             <td colspan="2">Initial Balance</td>
             <td></td>
-            <td><%= number_with_delimiter @transaction.account.initial_balance_in(@date) %></td>
+            <td><%= number_with_delimiter @transaction.account.begin_balance(@date) %></td>
             <td></td>
           </tr>
 
@@ -44,8 +44,8 @@
             <tr class="<%= transaction.positive?(related) ? 'text-success' : 'text-danger' %>">
               <td class="font-weight-light"><%= l transaction.date, format: :short %></td>
               <td><%= octicon icon_for transaction.kind, related %></td>
-              <td><%= transaction.spec %></td>
-              <td class="font-weight-light ">
+              <td><%= transaction.spec related %></td>
+              <td class="font-weight-light text-right">
                 <%= number_with_delimiter transaction.amount %>
               </td>
               <td></td>
@@ -64,7 +64,7 @@
             <td></td>
             <td colspan="2">Final Balance</td>
             <td></td>
-            <td><%= number_with_delimiter @transaction.account.final_balance_in(@date) %></td>
+            <td><%= number_with_delimiter @transaction.account.end_balance(@date) %></td>
             <td></td>
           </tr>
           </tbody>

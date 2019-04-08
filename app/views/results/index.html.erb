@@ -1,0 +1,86 @@
+<h3>Financial Result</h3>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= bootstrap_form_tag method: 'get', layout: :inline do |f| %>
+      <%= f.month_field :begin_month, label: 'from', value: @begin_month, required: true %>
+      <%= f.month_field :end_month, label: 'to', value: @end_month, required: true %>
+      <%= f.submit 'Go!', class: 'ml-3 btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <table class="table">
+
+          <thead>
+          <tr>
+            <th>
+              <%= "from " + l(@result.from, format: :short) + " to " + l(@result.to, format: :short) %>
+            </th>
+            <th>Total</th>
+          </tr>
+          </thead>
+
+          <tbody>
+
+          <tr class="font-weight-bold">
+            <td>Revenues</td>
+            <td><%= number_with_delimiter @result.total_revenues %></td>
+          </tr>
+
+          <% @result.revenues.each do |category, amount|%>
+
+            <tr class="font-09 text-success">
+              <td><%= category %></td>
+              <td><%= number_with_delimiter amount %></td>
+            </tr>
+
+          <% end %>
+
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr class="font-weight-bold">
+            <td>Expenses</td>
+            <td><%= number_with_delimiter @result.total_expenses %></td>
+          </tr>
+
+          <% @result.expenses.each do |category, amount|%>
+
+            <tr class="font-09 text-danger">
+              <td><%= category %></td>
+              <td><%= number_with_delimiter amount %></td>
+            </tr>
+
+          <% end %>
+
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr class="font-weight-bold">
+            <td>Result</td>
+            <td class="text-success"><%= number_with_delimiter @result.result %></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

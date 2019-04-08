@@ -4,7 +4,6 @@ class AccountsController < ApplicationController
   def index
   end
 
-
   def edit
     render :index
   end
@@ -23,7 +22,7 @@ class AccountsController < ApplicationController
     if @account.update(account_params)
       redirect_to accounts_url, notice: 'Account was successfully updated.'
     else
-      render :edit
+      render :index
     end
   end
 
@@ -39,6 +38,6 @@ class AccountsController < ApplicationController
     end
 
     def account_params
-      params.require(:account).permit(:name, :initial_balance, :kind)
+      params.require(:account).permit(:name, :group, :initial_balance, :kind)
     end
 end

@@ -6,11 +6,17 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to 'Accounts', accounts_path, class: 'nav-link' %>
+      <li class="nav-item <%= active_class(accounts_path) %>">
+        <%= link_to 'Accounts', accounts_path, class: 'nav-link ' %>
       </li>
-      <li class="nav-item">
+      <li class="nav-item <%= active_class(transactions_path) %>">
         <%= link_to 'Transactions', transactions_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item <%= active_class(results_index_path) %>">
+        <%= link_to 'Results', results_index_path, class: 'nav-link' %>
+      </li>
+      <li class="nav-item <%= active_class(balance_sheets_index_path) %>">
+        <%= link_to 'Balance Sheet', balance_sheets_index_path, class: 'nav-link' %>
       </li>
     </ul>
   </div>
